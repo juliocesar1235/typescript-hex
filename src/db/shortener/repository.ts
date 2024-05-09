@@ -16,7 +16,7 @@ export class ShortenerRepository implements IShortenerRepository {
     async Store(redirectObj: IRedirect): Promise<any> {
         try {
             await Redirect.create(redirectObj)
-            const shortenUrl = process.env.URL_DEV + redirectObj.code;
+            const shortenUrl = process.env.URL_DEV  + redirectObj.code;
             return { shortenUrl }
         } catch (error) {
             console.error(error)

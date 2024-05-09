@@ -1,0 +1,30 @@
+# ./serverless.yml
+service: serverless-shorty
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline # used for local execution
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-2
+  stage: dev
+  timeout: 30   # repository wide Lambda timeout
+  environment:  # repository wide Lambda env variables
+    STAGE: dev
+
+functions:
+  app:
+    handler: src/app.handler
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}
+  getUrl:
+    handler: src/app.handler
+    events:
+      - http: 'GET /{proxy+}'
+  createUrl:
+    handler: src/app.handler
+    events:
+      - http: 'POST /short'

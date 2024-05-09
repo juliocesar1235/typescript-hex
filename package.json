@@ -27,6 +27,7 @@
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.2",
     "morgan": "^1.10.0",
+    "serverless-http": "^3.2.0",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
@@ -36,6 +37,8 @@
     "@types/helmet": "^4.0.0",
     "@types/morgan": "^1.9.9",
     "nodemon": "^3.1.0",
+    "serverless-offline": "^13.5.0",
+    "serverless-plugin-typescript": "^2.1.5",
     "typescript": "^5.4.5"
   }
 }

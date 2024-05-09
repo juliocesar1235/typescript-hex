@@ -26,5 +26,6 @@ const redirectController: IShortenerController = makeCreateCommentController();
 //Set routes
 router.get('/:code',  (req,res) => redirectController.GetRedirectUrl(req,res));
 router.post('/short',  (req,res) => redirectController.CreateShortUrl(req,res))
+router.get('/', (req,res) => res.send("Hola World"))
 
 export default router;

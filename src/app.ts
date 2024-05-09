@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import router from "../src/api/router";
+import serverless from "serverless-http";
 
 
 
@@ -37,8 +38,6 @@ app.use(express.json());
 app.use('/', router);
 
 // Start server
-app.listen(port, () => {
-  console.log(`Server started at  http://localhost:${port}`);
-});
 
-export default app;
+
+export const handler = serverless(app);

@@ -4,6 +4,9 @@ package-lock.json
 *.log
 *.gz
 *.env
+*.build
+build
+*.serverless
 
 # Coveralls
 .nyc_output
