@@ -14,7 +14,7 @@ export class ShortenerController implements IShortenerController {
 
   async GetRedirectUrl(req: Request, res: Response): Promise<void> {
     const code = req.params.code;
-    if(code && code.length > MINIMUM_CODE_LENGTH){
+    if(code && code.length >= MINIMUM_CODE_LENGTH){
       const redirectUrl = await this.shortenerService.GetRedirectUrl(code);
       console.log(redirectUrl)
       if (redirectUrl && redirectUrl.url) {
@@ -24,7 +24,7 @@ export class ShortenerController implements IShortenerController {
       res.status(500).send("An unexpected error ocurred getting the url");
       return;
     } 
-    res.status(400).send("MISSING CODE");
+    res.status(400).send("MISSING CODE OR INSUFFICIENT LENGTH, NEEDS TO BE AT LEAST 4 FOR CHARACTERS");
     return;
   }
   async CreateShortUrl(req: Request, res: Response): Promise<void> {
@@ -35,7 +35,7 @@ export class ShortenerController implements IShortenerController {
       res.status(201).send(newUrl)
       return
     }catch(err: any){
-      console.error("ERRROR",err)
+      console.error("ERROR",err)
       if (err) {
         res.status(400).send(err.message);
         return

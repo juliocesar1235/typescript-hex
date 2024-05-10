@@ -6,14 +6,18 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import router from "../src/api/router";
 import serverless from "serverless-http";
+import { errorHandler } from './middleware/error.middleware';
 
 
+dotenv.config()
 
 // Express server
 const app = express();
 const port = 3000;
+const mongoConn = process.env.MONGO_CONN ?? "NO_CONN"
 
-mongoose.connect("mongodb://localhost/27017", {
+
+mongoose.connect(mongoConn, {
   
 });
 
@@ -26,7 +30,6 @@ db.once('open', function() {
 });
 
 
-dotenv.config()
 // Server configuration
 app.use(cors());
 app.use(helmet());
@@ -36,6 +39,7 @@ app.use(express.json());
 
 // Define Express routes
 app.use('/', router);
+app.use(errorHandler);
 
 // Start server
 
